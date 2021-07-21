@@ -1,0 +1,29 @@
+/* Copyright (c) 2021 Jonathan Vice */
+
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.index-ongoing-section, .index-rooms-section {
+    background-color: #8a2be2;
+    color: #75d41d;
+    padding: 10px;
+}
+
+.index-ongoing-section {
+    max-width: 50%;
+    float: left;
+}
+
+.index-rooms-section {
+    border-radius: 10px;
+    max-width: 50%;
+    position: fixed;
+    right: 0px;
+    text-align: right;
+    margin-right: 10px;   
+}
+
+.index-rooms-controls {
+    position: absolute;
+}

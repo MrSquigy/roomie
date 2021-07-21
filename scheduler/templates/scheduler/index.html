@@ -1,0 +1,32 @@
+{% comment %} Copyright (c) 2021 Jonathan Vice {% endcomment %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roomie</title>
+    <link rel="stylesheet" href="{% static 'scheduler/style.css' %}">
+</head>
+<body>
+    <div class="index-ongoing-section">
+        <h2>Ongoing Events</h2>
+        <ul>
+        {% for event in data.current_events %}
+            <li>{{ event }} in {{ event.room|lower }} from {{ event.start_time|date:"N jS H:i" }} to {{ event.end_time|date:"N jS H:i" }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="index-rooms-section">
+        <div class="index-rooms-controls">
+            <button>+</button><button>-</button>
+        </div>
+        <h2>Rooms</h2>
+        {% for room in data.rooms %}
+            {{ room.number }}: {{ room }}
+        {% endfor %}
+    </div>
+</body>
+</html>
