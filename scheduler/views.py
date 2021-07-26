@@ -30,7 +30,7 @@ class IndexView(generic.TemplateView):
         return events
 
     def get_upcoming_events(self):
-        """Return events that will take place."""
+        """Return events that will take place in the future."""
         # TODO: Add option to select how far to look for upcoming events
         events = Event.objects.filter(start_time__gte=timezone.now())
 

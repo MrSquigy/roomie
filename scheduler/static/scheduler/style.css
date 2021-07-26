@@ -14,16 +14,10 @@ ul {
 }
 
 .index-rooms-section {
-    border-radius: 10px;
     max-width: 20%;
     position: fixed;
-    right: 0px;
+    right: 10px;
     text-align: right;
-    margin-right: 10px;
-}
-
-.index-rooms-controls {
-    position: absolute;
 }
 
 .index-events-container, .index-rooms-section {
@@ -34,4 +28,26 @@ ul {
 
 .index-events-container {
     max-width: 50%;
+}
+
+.index-controls-section {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.index-controls-section button {
+    background-color: #8a2be2;
+    border-radius: 10px;
+    color: #75d41d;
+    cursor: pointer;
+    font-size: medium;
+    font-weight: normal;
+    margin-bottom: 10px;
+    width: 150px;
+    padding: 10px;
+    border: 0;
+    box-shadow: 5px 5px 5px -2px gray;
 }
