@@ -16,13 +16,22 @@ class IndexView(generic.TemplateView):
         context["data"] = {
             "rooms": Room.objects.all(),
             "current_events": self.get_current_events(),
+            "upcoming_events": self.get_upcoming_events(),
         }
 
         return context
 
     def get_current_events(self):
-        e = Event.objects.filter(start_time__lte=timezone.now()).filter(
+        """Return events that are taking place now."""
+        events = Event.objects.filter(start_time__lte=timezone.now()).filter(
             end_time__gte=timezone.now()
         )
 
-        return e
+        return events
+
+    def get_upcoming_events(self):
+        """Return events that will take place."""
+        # TODO: Add option to select how far to look for upcoming events
+        events = Event.objects.filter(start_time__gte=timezone.now())
+
+        return events

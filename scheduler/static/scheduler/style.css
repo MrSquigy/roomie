@@ -4,26 +4,34 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.index-ongoing-section, .index-rooms-section {
+body {
+    background-color: #ddd3ee;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.index-rooms-section {
+    border-radius: 10px;
+    max-width: 20%;
+    position: fixed;
+    right: 0px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.index-rooms-controls {
+    position: absolute;
+}
+
+.index-events-container, .index-rooms-section {
     background-color: #8a2be2;
     color: #75d41d;
     padding: 10px;
 }
 
-.index-ongoing-section {
+.index-events-container {
     max-width: 50%;
-    float: left;
-}
-
-.index-rooms-section {
-    border-radius: 10px;
-    max-width: 50%;
-    position: fixed;
-    right: 0px;
-    text-align: right;
-    margin-right: 10px;   
-}
-
-.index-rooms-controls {
-    position: absolute;
 }

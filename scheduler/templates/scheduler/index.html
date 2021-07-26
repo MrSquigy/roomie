@@ -1,4 +1,4 @@
-{% comment %} Copyright (c) 2021 Jonathan Vice {% endcomment %}
+<!-- Copyright (c) 2021 Jonathan Vice -->
 
 {% load static %}
 
@@ -11,22 +11,38 @@
     <link rel="stylesheet" href="{% static 'scheduler/style.css' %}">
 </head>
 <body>
-    <div class="index-ongoing-section">
-        <h2>Ongoing Events</h2>
+    <div class="index-rooms-section">
+        <div class="index-rooms-controls">
+            <button disabled>Add</button>
+        </div>
+        <h2>Rooms</h2>
         <ul>
-        {% for event in data.current_events %}
-            <li>{{ event }} in {{ event.room|lower }} from {{ event.start_time|date:"N jS H:i" }} to {{ event.end_time|date:"N jS H:i" }}</li>
+        {% for room in data.rooms %}
+            <li>{{ room.number }}: {{ room }}</li>
         {% endfor %}
         </ul>
     </div>
-    <div class="index-rooms-section">
-        <div class="index-rooms-controls">
-            <button>+</button><button>-</button>
+        <div class="index-events-container">
+            <h2>Ongoing Events</h2>
+            <ul>
+            {% for event in data.current_events %}
+                <li>{{ event }} in {{ event.room|lower }} from {{ event.start_time|date:"N jS H:i" }} to {{ event.end_time|date:"N jS H:i" }}</li>
+            {% empty %}
+                <li>Currently, there are no events happening</li>
+            {% endfor %}
+            </ul>
+        </div><br>
+        
+        <div class="index-events-container">
+            <h2>Upcoming Events</h2>
+            <ul>
+            {% for event in data.upcoming_events %}
+                <li>{{ event }} in {{ event.room|lower }} from {{ event.start_time|date:"N jS H:i" }} to {{ event.end_time|date:"N jS H:i" }}</li>
+            {% empty %}
+                <li>There are no upcoming events</li>
+            {% endfor %}
+            </ul>
         </div>
-        <h2>Rooms</h2>
-        {% for room in data.rooms %}
-            {{ room.number }}: {{ room }}
-        {% endfor %}
-    </div>
+
 </body>
 </html>
