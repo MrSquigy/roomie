@@ -5,7 +5,6 @@ from django.db import models
 
 class Room(models.Model):
     name = models.CharField(max_length=30)
-    number = models.PositiveSmallIntegerField(unique=True)
 
     def __str__(self) -> str:
         return self.name
