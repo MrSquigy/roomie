@@ -1,6 +1,9 @@
 # Copyright (c) 2021 Jonathan Vice
 
-from django.utils import timezone
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
+from django.urls import reverse
+from django.utils import dateparse, timezone
 from django.views import generic
 
 from .models import Event, Room
@@ -35,3 +38,30 @@ class IndexView(generic.TemplateView):
         events = Event.objects.filter(start_time__gte=timezone.now())
 
         return events
+
+
+def add_room(request):
+    Room.objects.create(name=request.POST["room-name"])
+
+    return HttpResponseRedirect(reverse("scheduler:index"))
+
+
+def add_event(request):
+    room = get_object_or_404(Room, pk=request.POST["event-room"])
+    start_date = (
+        f"{request.POST['event-start-date']} {request.POST['event-start-time']}"
+    )
+    end_date = f"{request.POST['event-end-date']} {request.POST['event-end-time']}"
+
+    start_date = dateparse.parse_datetime(start_date)
+    end_date = dateparse.parse_datetime(end_date)
+
+    Event.objects.create(
+        name=request.POST["event-name"],
+        room=room,
+        start_time=start_date,
+        end_time=end_date,
+        request_date=timezone.now(),
+    )
+
+    return HttpResponseRedirect(reverse("scheduler:index"))
