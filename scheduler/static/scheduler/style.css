@@ -38,9 +38,8 @@ ul {
     flex-direction: column;
 }
 
-.index-controls-section button {
+.btn, .index-controls-section button {
     background-color: #8a2be2;
-    border-radius: 10px;
     color: #75d41d;
     cursor: pointer;
     font-size: medium;
@@ -48,6 +47,39 @@ ul {
     margin-bottom: 10px;
     width: 150px;
     padding: 10px;
-    border: 0;
+    border: 0;    
+}
+
+.index-controls-section button {
+    border-radius: 10px;
     box-shadow: 5px 5px 5px -2px gray;
+}
+
+.close {
+    cursor: pointer;
+    color: #000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #ddd3ee;
+    margin: 15% auto;
+    padding: 20px;
+    padding-top: 5px;
+    border: 1px solid #888;
+    width: 400px;
 }

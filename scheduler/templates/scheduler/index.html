@@ -43,8 +43,51 @@
     </div>
 
     <div class="index-controls-section">
-        <button>Add room</button>
-        <button>Add event</button>
+        <button onclick="displayModal('add-room-modal')">Add room</button>
+        <button onclick="displayModal('add-event-modal')">Add event</button>
     </div>
+
+    <!-- Add room modal form -->
+    <div id="add-room-modal" class="modal">
+        <div class="modal-content">
+            <span id="add-room-modal-close" class="close">&times;</span>
+            <form action="#" method="post">
+                {% csrf_token %}
+                <h3>Add Room</h3>
+                <label for="room-name">Room Name</label><br>
+                <input type="text" id="room-name"><br><br>
+                <input type="submit" value="Add" class="btn">
+            </form>
+        </div>
+    </div>
+
+    <!-- Add event modal form -->
+    <div id="add-event-modal" class="modal">
+        <div class="modal-content">
+            <span id="add-event-modal-close" class="close">&times;</span>
+            <form action="#" method="post">
+                {% csrf_token %}
+                <h3>Add Event</h3>
+                <label for="event-name">Event Name</label><br>
+                <input type="text" id="event-name"><br><br>
+
+                <label for="event-start-date">Start Date & Time</label><br>
+                <input type="date" name="event-start-date" id="event-start-date">
+                <input type="time" name="event-start-time" id="event-start-time"><br><br>
+
+                <label for="event-end-date">End Date & Time</label><br>
+                <input type="date" name="event-end-date" id="event-end-date">
+                <input type="time" name="event-end-time" id="event-end-time"><br><br>
+
+                <label for="event-description">Event Description</label><br>
+                <textarea name="event-description" id="event-description" cols="45" rows="8"></textarea><br><br>
+
+                <input type="submit" value="Add" class="btn">
+            </form>
+        </div>
+    </div>
+
+    <!-- Include js script -->
+    <script src="{% static 'scheduler/script.js' %}"></script>
 </body>
 </html>
