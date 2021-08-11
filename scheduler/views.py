@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.utils import dateparse, timezone
 from django.views import generic
 
+from .forms import AddRoomForm, AddEventForm
 from .models import Event, Room
 
 
@@ -20,6 +21,9 @@ class IndexView(generic.TemplateView):
             "rooms": Room.objects.all(),
             "current_events": self.get_current_events(),
             "upcoming_events": self.get_upcoming_events(),
+            "add_room_form": AddRoomForm(),
+            "add_event_form": AddEventForm(),
+            # TODO: "edit_event_form": EventForm(instance=?) check docs
         }
 
         return context
@@ -41,13 +45,13 @@ class IndexView(generic.TemplateView):
 
 
 def add_room(request):
-    Room.objects.create(name=request.POST["room-name"])
+    Room.objects.create(name=request.POST["room_name"])
 
     return HttpResponseRedirect(reverse("scheduler:index"))
 
 
 def add_event(request):
-    room = get_object_or_404(Room, pk=request.POST["event-room"])
+    room = get_object_or_404(Room, pk=request.POST["room"])
     start_date = (
         f"{request.POST['event-start-date']} {request.POST['event-start-time']}"
     )
@@ -57,7 +61,7 @@ def add_event(request):
     end_date = dateparse.parse_datetime(end_date)
 
     Event.objects.create(
-        name=request.POST["event-name"],
+        name=request.POST["event_name"],
         room=room,
         start_time=start_date,
         end_time=end_date,

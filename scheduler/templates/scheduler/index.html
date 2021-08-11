@@ -26,7 +26,7 @@
         {% for event in data.current_events %}
             <li>{{ event }} in {{ event.room|lower }} from {{ event.start_time|date:"N jS H:i" }} to {{ event.end_time|date:"N jS H:i" }}</li>
         {% empty %}
-            <li>Currently, there are no events happening</li>
+            <li>There are no ongoing events</li>
         {% endfor %}
         </ul>
     </div><br>
@@ -54,8 +54,7 @@
             <form action="{% url 'scheduler:add_room' %}" method="post">
                 {% csrf_token %}
                 <h3>Add Room</h3>
-                <label for="room-name">Room Name</label><br>
-                <input type="text" id="room-name" name="room-name"><br><br>
+                {{ data.add_room_form.as_p }}
                 <input type="submit" value="Add" class="btn">
             </form>
         </div>
@@ -68,23 +67,15 @@
             <form action="{% url 'scheduler:add_event' %}" method="post">
                 {% csrf_token %}
                 <h3>Add Event</h3>
-                <label for="event-room">Room</label><br>
-                <select name="event-room" id="event-room">
-                {% for room in data.rooms %}
-                    <option value="{{ room.id }}">{{ room }}</option>
-                {% endfor %}
-                </select><br><br>
+                {{ data.add_event_form.as_p }}
 
-                <label for="event-name">Event Name</label><br>
-                <input type="text" name="event-name" id="event-name"><br><br>
+                <p><label for="event-start-date">Start Date & Time</label><br>
+                <input type="date" name="event-start-date" id="event-start-date" required>
+                <input type="time" name="event-start-time" id="event-start-time" required></p>
 
-                <label for="event-start-date">Start Date & Time</label><br>
-                <input type="date" name="event-start-date" id="event-start-date">
-                <input type="time" name="event-start-time" id="event-start-time"><br><br>
-
-                <label for="event-end-date">End Date & Time</label><br>
-                <input type="date" name="event-end-date" id="event-end-date">
-                <input type="time" name="event-end-time" id="event-end-time"><br><br>
+                <p><label for="event-end-date">End Date & Time</label><br>
+                <input type="date" name="event-end-date" id="event-end-date" required>
+                <input type="time" name="event-end-time" id="event-end-time" required></p>
 
                 <input type="submit" value="Add" class="btn">
             </form>
